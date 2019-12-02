@@ -128,3 +128,32 @@ Creating prototype-docker_db_1 ... done
 -----------------------------------------------------------------------------------------------
 prototype-docker_db_1   docker-entrypoint.sh mysqld   Up      0.0.0.0:3306->3306/tcp, 33060/tcp
 ```
+
+9. 初期化クエリ実行確認
+
+schema.sqlとtestdata.sqlの実行結果を確認します。
+
+```
+>docker exec -it prototype-docker_db_1 bash
+root@aabd0f319f85:/# mysql -u user -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 24
+Server version: 8.0.18 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2019, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+mysql> show tables from prototype;
++---------------------+
+| Tables_in_prototype |
++---------------------+
+| users               |
+| users_history       |
++---------------------+
+2 rows in set (0.00 sec)
+```
